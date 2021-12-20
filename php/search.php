@@ -3,7 +3,7 @@
 <form role="form" action="search.php" method="post">
     <div class="form-group">
         <label class="sr-only" for="form-first-name">Input Search Criteria</label>
-        <input type="text" name="search_criteria" />
+        <input type="text" name="id" />
     </div>
     <button type="submit" class="btn" name="Submit"><strong>Search</strong></button>
 </form>                                        
@@ -12,7 +12,7 @@
 <?php
 include_once("config.php");
 if(isset($_POST['Submit'])){
-$result = mysqli_query($mysqli, "SELECT * FROM tablename WHERE search_criteria='$_POST[search_criteria]'");
+$result = mysqli_query($mysqli, "SELECT * FROM students WHERE id='$_POST[id]'");
 ?>
 
 <html>	
@@ -23,17 +23,17 @@ $result = mysqli_query($mysqli, "SELECT * FROM tablename WHERE search_criteria='
         <th>Name</th>
         <th>Age</th>
         <th>Email</th>
-		<th>Department</th>
+		    <th>City</th>
       </tr>
     </thead>
     <tbody>
 			<?php
 			while($res = mysqli_fetch_array($result)) {
 				echo "<tr>";
-				echo "<td class='bg-danger'>".$res['name']."</td>";
-				echo "<td>".$res['age']."</td>";
+				echo "<td class='bg-danger'>".$res['first_name']."</td>";
+				echo "<td>".$res['last_name']."</td>";
 				echo "<td>".$res['email']."</td>";
-				echo "<td>".$res['dept']."</td>";
+				echo "<td>".$res['city_name']."</td>";
 				echo "</tr>";
 			}
 			?>
